@@ -1,0 +1,722 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1001</ID>
+      <Description>"00 - Setup / selected character (NO automatic changes)"</Description>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>1002</ID>
+          <Description>"01. Bind from OLD pointer (manual, may be obsolete)"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS.bindOld()
+return ""
+{$asm}
+
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1003</ID>
+          <Description>"02. Bind by known Qi address (fallback)"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS.bindManual()
+return ""
+{$asm}
+
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1004</ID>
+          <Description>"03. Check OLD pointer (read-only)"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS.legacyCheck()
+return ""
+{$asm}
+
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1005</ID>
+          <Description>"04. Show toolkit status"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS.status()
+return ""
+{$asm}
+
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1006</ID>
+      <Description>"01 - Selected character | LIVE 4-byte fields"</Description>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>1007</ID>
+          <Description>"Selected Character Face"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>ROWS_SelectedBase+130</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1008</ID>
+          <Description>"Selected Character Money"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>ROWS_SelectedBase+138</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1009</ID>
+          <Description>"Selected Character Followers"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>ROWS_SelectedBase+13C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1010</ID>
+          <Description>"Selected Character Qi / Action resource"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>ROWS_SelectedBase+140</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1011</ID>
+          <Description>"Selected Character Personal Guns (not faction equipment)"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>ROWS_SelectedBase+144</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1012</ID>
+      <Description>"02 - LEGACY: manual friendly roster (NOT automatic faction detection)"</Description>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>1013</ID>
+          <Description>"01. Add currently bound FRIENDLY character"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS.capture()
+return ""
+{$asm}
+
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1014</ID>
+          <Description>"02. LEGACY: Set Qi target for MANUALLY CAPTURED roster ONLY"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS.applyQi(false)
+return ""
+{$asm}
+
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1015</ID>
+          <Description>"03. LEGACY: Maintain Qi on MANUAL roster [toggle]"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS.setAuto(true)
+return ""
+{$asm}
+
+[DISABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS.setAuto(false)
+return ""
+{$asm}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1016</ID>
+          <Description>"04. Choose Qi target (default 99)"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS.chooseMaxQi()
+return ""
+{$asm}
+
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1017</ID>
+          <Description>"05. Clear captured roster and disable automation"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS.clearFriends()
+return ""
+{$asm}
+
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1018</ID>
+      <Description>"03 - FACTION equipment (requires separately VERIFIED addresses)"</Description>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>1019</ID>
+          <Description>"01. Bind verified 4-byte faction equipment address"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS.bindEquipment()
+return ""
+{$asm}
+
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1020</ID>
+          <Description>"02. Unbind equipment category"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS.unbindEquipment()
+return ""
+{$asm}
+
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1021</ID>
+          <Description>"Faction Equipment - Guns / Small Arms [unbound until verified]"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>ROWS_Equip_Guns</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1022</ID>
+          <Description>"Faction Equipment - Machine Guns [unbound until verified]"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>ROWS_Equip_MachineGuns</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1023</ID>
+          <Description>"Faction Equipment - Artillery / Cannons [unbound until verified]"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>ROWS_Equip_Artillery</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1024</ID>
+          <Description>"Faction Equipment - Automobiles / Cars [unbound until verified]"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>ROWS_Equip_Cars</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1025</ID>
+          <Description>"Faction Equipment - Tanks [unbound until verified]"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>ROWS_Equip_Tanks</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1026</ID>
+          <Description>"Faction Equipment - Trains [unbound until verified]"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>ROWS_Equip_Trains</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1027</ID>
+          <Description>"Faction Equipment - Armoured Trains [unbound until verified]"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>ROWS_Equip_ArmouredTrains</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1028</ID>
+          <Description>"Faction Equipment - Trucks [unbound until verified]"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>ROWS_Equip_Trucks</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1029</ID>
+          <Description>"Faction Equipment - Aircraft [unbound until verified]"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>ROWS_Equip_Aircraft</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1030</ID>
+          <Description>"Faction Equipment - Other (manual) [unbound until verified]"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>ROWS_Equip_Other</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1031</ID>
+      <Description>"04 - Runtime MONO discovery / troubleshooting"</Description>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>1032</ID>
+          <Description>"01. Export Mono class+field+method report -&gt; TEMP (v0.1.2)"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return '' end
+local ok,err=xpcall(function()
+  assert(ROWS and type(ROWS.dumpMono)=='function', 'ROWS table Lua was not initialized. Reopen the CT and allow its Lua script.')
+  ROWS.dumpMono()
+end, function(e)
+  return (debug and debug.traceback) and debug.traceback(tostring(e),2) or tostring(e)
+end)
+if not ok then
+  print('[ROWS] Mono diagnostic launcher ERROR: '..tostring(err))
+  showMessage('[ROWS] Diagnostic could not run. Open CE Lua Engine to inspect details.\n'..tostring(err))
+end
+return ''
+{$asm}
+
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1033</ID>
+          <Description>"02. Show bind and roster status"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS.status()
+return ""
+{$asm}
+
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols />
+  <LuaScript>-- Rise Of The White Sun - runtime-only CE toolkit
+-- 2026-10-26. This script NEVER calls an in-game cheat code,
+-- never touches a save file, and NEVER writes game memory on table load.
+-- Original 2023-era pointer chain and offsets come from the supplied .CT.
+
+if ROWS and ROWS.timer then pcall(function() ROWS.timer.destroy() end) end
+-- Clear stale CE symbols on reloading the table, without writing to game memory.
+for _, sym in ipairs({
+ 'ROWS_SelectedBase', 'ROWS_Equip_Guns', 'ROWS_Equip_MachineGuns',
+ 'ROWS_Equip_Artillery', 'ROWS_Equip_Cars', 'ROWS_Equip_Tanks',
+ 'ROWS_Equip_Trains', 'ROWS_Equip_ArmouredTrains', 'ROWS_Equip_Trucks',
+ 'ROWS_Equip_Aircraft', 'ROWS_Equip_Other'
+}) do pcall(unregisterSymbol,sym) end
+ROWS = { version='0.1.2', base=nil, friends={}, equipment={},
+         auto=false, processID=0, timer=nil, maxQi=99, reportName='ROWS_Mono_Discovery.txt' }
+
+local r = ROWS
+local oldOffsets = {0x68,0x78,0x20,0xC94,0x20,0x60}
+local statOffsets = {Face=0x130, Money=0x138, Followers=0x13C, Qi=0x140, Guns=0x144}
+local equipment = {
+  { 'Guns / Small Arms', 'ROWS_Equip_Guns' },
+  { 'Machine Guns', 'ROWS_Equip_MachineGuns' },
+  { 'Artillery / Cannons', 'ROWS_Equip_Artillery' },
+  { 'Automobiles / Cars', 'ROWS_Equip_Cars' },
+  { 'Tanks', 'ROWS_Equip_Tanks' },
+  { 'Trains', 'ROWS_Equip_Trains' },
+  { 'Armoured Trains', 'ROWS_Equip_ArmouredTrains' },
+  { 'Trucks', 'ROWS_Equip_Trucks' },
+  { 'Aircraft', 'ROWS_Equip_Aircraft' },
+  { 'Other (manual)', 'ROWS_Equip_Other' },
+}
+r.equipmentTypes=equipment
+local function hex(n)
+  if n==nil then return '(nil)' end
+  if type(n)=='number' then
+    if n==math.floor(n) then return string.format('0x%X',n) end
+    return tostring(n)
+  end
+  -- CE/Mono builds may report boolean success instead of a numerical address.
+  -- Never pass a boolean, string or userdata to %X.
+  return tostring(n)
+end
+local function safeInt(a)
+  if type(a)~='number' or a &lt; 0x10000 then return nil end
+  local ok, x=pcall(readInteger,a)
+  if ok and type(x)=='number' then return x end
+  return nil
+end
+local function safePtr(a)
+  if type(a)~='number' or a &lt; 0x10000 then return nil end
+  local ok, x=pcall(readPointer,a)
+  if ok and type(x)=='number' and x&gt;=0x10000 then return x end
+  return nil
+end
+local function getPID()
+  local ok, p=pcall(getOpenedProcessID)
+  return (ok and type(p)=='number') and p or 0
+end
+local function validProcess()
+  local pid=getPID()
+  return pid~=0 and (r.processID==0 or pid==r.processID)
+end
+local function message(s)
+  showMessage('[Rise Of The White Sun]\n'..tostring(s))
+end
+local function bindSymbol(n, a)
+  pcall(unregisterSymbol,n)
+  registerSymbol(n,a,true)
+end
+local function validateBase(base)
+  if type(base)~='number' or base&lt;0x10000 then return nil end
+  local face=safeInt(base+0x130)
+  local money=safeInt(base+0x138)
+  local followers=safeInt(base+0x13C)
+  local qi=safeInt(base+0x140)
+  local guns=safeInt(base+0x144)
+  if not (face and money and followers and qi and guns) then return nil end
+  -- Reject clearly invalid pointers. These are not game-defined hard caps.
+  if face&lt;0 or face&gt;100000000 or money&lt;0 or money&gt;1000000000
+    or followers&lt;0 or followers&gt;1000000000
+    or qi&lt;0 or qi&gt;9999 or guns&lt;0 or guns&gt;1000000000 then return nil end
+  return {Face=face,Money=money,Followers=followers,Qi=qi,Guns=guns}
+end
+local function oldPointer()
+  local a=getAddressSafe('"mono-2.0-bdwgc.dll"+0072EDC8')
+  if not a then return nil,'Old Mono module + offset is not available' end
+  a=safePtr(a)
+  if not a then return nil,'First level of old pointer chain is invalid' end
+  for i,offset in ipairs(oldOffsets) do
+    a=safePtr(a+offset)
+    if not a then return nil,'Old pointer chain failed at link '..i end
+  end
+  return a
+end
+local function statSummary(base)
+  local s=validateBase(base)
+  if not s then return 'Invalid / implausible character data at '..hex(base) end
+  return string.format('%s\nFace %d | Money %d | Followers %d | Qi %d | Guns %d',
+          hex(base),s.Face,s.Money,s.Followers,s.Qi,s.Guns)
+end
+function r.bindAt(base, source)
+  if not validProcess() then message('Attach CE to the game process first, and reopen the table after restarting the game.') return false end
+  local v=validateBase(base)
+  if not v then message('Refusing to bind: not all five 4-byte stats look valid at '..hex(base)) return false end
+  r.base=base
+  r.processID=getPID()
+  bindSymbol('ROWS_SelectedBase',base)
+  message('Bound selected-character candidate ('..tostring(source)..').\n'..statSummary(base)..
+    '\n\nCheck the displayed numbers against the game before editing.\nChange character? Re-bind explicitly.')
+  return true
+end
+function r.bindOld()
+  if getPID()==0 then message('Attach to Rise Of The White Sun first.') return end
+  local base,err=oldPointer()
+  if not base then message(err..'\nUse the manual Qi-address fallback instead.') return end
+  r.bindAt(base,'legacy pointer')
+end
+local function toAddress(str)
+  if not str then return nil end
+  local a=getAddressSafe(str)
+  if a then return a end
+  local s=str:gsub('^%s*0[xX]',''):gsub('%s+$','')
+  return tonumber(s,16)
+end
+function r.bindManual()
+  if getPID()==0 then message('Attach to the game process first.') return end
+  local s=inputQuery('Bind selected character',
+    'Paste the current character Qi address found in CE (HEX).\nQi is +0x140 from the resource base.','')
+  if not s or s=='' then return end
+  local a=toAddress(s)
+  if not a then message('Invalid memory address: '..s) return end
+  r.bindAt(a-0x140,'manual Qi address')
+end
+function r.capture()
+  if not validProcess() or not r.base then message('Bind and validate a friendly character first.') return end
+  local v=validateBase(r.base)
+  if not v then message('The selected character pointer is no longer valid.') return end
+  r.friends[r.base]={initialFace=v.Face,initialMoney=v.Money}
+  local c=0 for _ in pairs(r.friends) do c=c+1 end
+  message('Friendly character captured at '..hex(r.base)..'. Roster: '..c..' characters.\n'
+     ..'Only add characters belonging to YOUR faction; no faction test is available in this dump.')
+end
+function r.clearFriends()
+  r.auto=false
+  if r.timer then r.timer.Enabled=false end
+  r.friends={}
+  message('Captured character roster cleared and auto Qi disabled.')
+end
+function r.applyQi(quiet)
+  if not validProcess() then if not quiet then message('Game process not attached or has changed.') end return 0,0 end
+  local done, skipped=0,0
+  for base,_ in pairs(r.friends) do
+    local s=validateBase(base)
+    if s then
+      local ok=writeInteger(base+statOffsets.Qi,r.maxQi)
+      if ok~=false then done=done+1 else skipped=skipped+1 end
+    else
+      r.friends[base]=nil
+      skipped=skipped+1
+    end
+  end
+  if not quiet then message('Qi '..r.maxQi..' applied to '..done..' CAPTURED friendly character(s); invalid skipped: '..skipped..'.\n'
+    ..'Uncaptured friendly characters have NOT been modified.') end
+  return done,skipped
+end
+function r.setAuto(on)
+  if on then
+    if next(r.friends)==nil then message('Roster empty. Capture your own faction characters first.') return end
+    if not validProcess() then message('Attach to the original game process first.') return end
+    if not r.timer then
+      r.timer=createTimer(getMainForm(),false)
+      r.timer.Interval=850
+      r.timer.OnTimer=function()
+        if not r.auto then return end
+        if not validProcess() then
+          r.auto=false; r.timer.Enabled=false; return
+        end
+        r.applyQi(true)
+      end
+    end
+    r.auto=true
+    r.timer.Enabled=true
+    message('Maintain Qi = '..r.maxQi..' is ON for captured roster ONLY. No save-file cheats are used.')
+  else
+    r.auto=false
+    if r.timer then r.timer.Enabled=false end
+    message('Auto Qi disabled.')
+  end
+end
+function r.chooseMaxQi()
+  local s=inputQuery('Choose Qi target','Choose Qi number for captured characters (1..99):',tostring(r.maxQi))
+  if not s then return end
+  local n=tonumber(s)
+  if n and math.floor(n)==n and n&gt;=1 and n&lt;=99 then r.maxQi=n
+    message('Target Qi is now '..n) else message('Use an integer from 1 to 99.') end
+end
+function r.bindEquipment()
+  if getPID()==0 then message('Attach to game first.') return end
+  local lines={}
+  for i,item in ipairs(equipment) do lines[#lines+1]=i..'. '..item[1] end
+  local choice=inputQuery('Faction equipment - MANUAL binding',
+      table.concat(lines,'\n')..'\n\nEnter an item number:','1')
+  if not choice then return end
+  local i=tonumber(choice)
+  if not i or not equipment[i] or math.floor(i)~=i then message('Invalid item index') return end
+  local item=equipment[i]
+  local txt=inputQuery('Confirm equipment address',
+    item[1]..'\nPaste the exact 4-byte address from a verified CE search.\n'
+    ..'THIS IS A FACTION STORAGE VALUE, not a character gun value.','')
+  if not txt then return end
+  local a=toAddress(txt)
+  local value=safeInt(a)
+  if not value or value&lt;0 or value&gt;1000000000 then
+    message('Invalid candidate. No equipment memory was modified.') return
+  end
+  -- Deliberately require the user to validate current numeric value.
+  local check=inputQuery('Equipment verification',
+    'Category: '..item[1]..'\nAddress: '..hex(a)..'\nCurrent value: '..value
+    ..'\n\nType the CURRENT VALUE shown above to confirm that this is the right faction item:', '')
+  if not check then return end
+  if tonumber(check)~=value then message('Value mismatch. Binding cancelled.') return end
+  bindSymbol(item[2],a)
+  r.equipment[i]=a
+  message('Bound '..item[1]..' to '..hex(a)..' (value '..value..').\n'
+      ..'Edit the corresponding 4-byte entry in the table to change it.\n'
+      ..'No auto-detection of faction ownership is claimed.')
+end
+function r.unbindEquipment()
+  local s=inputQuery('Unbind faction equipment','Enter item number to unbind (1-'..#equipment..'):', '1')
+  local i=tonumber(s)
+  if not i or not equipment[i] or math.floor(i)~=i then return end
+  pcall(unregisterSymbol,equipment[i][2])
+  r.equipment[i]=nil
+  message('Unbound '..equipment[i][1]..'.')
+end
+local function relevantName(n)
+  n=tostring(n or ''):lower()
+  return n:find('charact',1,true) or n:find('faction',1,true)
+    or n:find('inventory',1,true) or n:find('equip',1,true)
+    or n:find('weapon',1,true) or n:find('army',1,true)
+    or n:find('player',1,true) or n:find('unit',1,true)
+    or n:find('vehicle',1,true) or n:find('stock',1,true)
+    or n:find('item',1,true) or n:find('resource',1,true)
+    or n:find('machinegun',1,true) or n:find('artillery',1,true)
+    or n:find('tank',1,true) or n:find('train',1,true)
+    or n:find('gun',1,true) or n:find('supply',1,true)
+end
+local function appendFields(lines, classId)
+  local ok, f=pcall(mono_class_enumFields,classId,true)
+  if not ok or not f then return end
+  for _,field in ipairs(f) do
+    lines[#lines+1]=string.format('  %s +%X  type=%s (%s) static=%s',
+      tostring(field.name), tonumber(field.offset) or 0,
+      tostring(field.typename),tostring(field.monotype),tostring(field.isStatic))
+  end
+end
+function r.dumpMono()
+  -- Read-only incremental diagnostic with guaranteed early file creation.
+  -- No game memory writes, no game cheat method calls and no save operations.
+  local folder=(os.getenv('TEMP') or os.getenv('TMP') or '.')
+  local path=folder..'\\'..r.reportName
+  local fh,openErr=io.open(path,'w')
+  if not fh then
+    message('Cannot create Mono report at '..path..'\n'..tostring(openErr))
+    return false
+  end
+  local function log(str)
+    fh:write(tostring(str),'\n')
+    fh:flush()
+  end
+  log('Rise Of The White Sun - MONO diagnostic v0.1.2')
+  log('Report path: '..path)
+  log('Game PID: '..tostring(getPID()))
+  log('Selected object: '..hex(r.base))
+  log('Metadata diagnostic: no game attribute writes, cheat codes or save-file edits. CE Mono collector may inject its helper into the process.')
+  log('')
+  -- The file now exists even if a Mono API call fails below.
+  local startTime=os.clock()
+  local matched,allClasses=0,0
+  local ok,err=xpcall(function()
+    if getPID()==0 then error('No attached game process') end
+    if type(LaunchMonoDataCollector)~='function' then
+      error('CE Mono Lua extension is unavailable. Enable Mono features in CE.')
+    end
+    log('Stage 1: initialising Mono collector...')
+    local monoBase=LaunchMonoDataCollector()
+    if monoBase==nil or monoBase==false or monoBase==0 then error('LaunchMonoDataCollector failed: '..tostring(monoBase)) end
+    log('Mono collector result: '..hex(monoBase)..' (type: '..type(monoBase)..')')
+    log('Stage 2: enumerating Mono assemblies...')
+    local assemblies=mono_enumAssemblies()
+    if type(assemblies)~='table' then error('mono_enumAssemblies did not return a table') end
+    log('Assembly count: '..tostring(#assemblies))
+    local foundAssembly=false
+    for _,asm in ipairs(assemblies) do
+      local okImage,img=pcall(mono_getImageFromAssembly,asm)
+      if okImage and img and img~=0 then
+        local okName,name=pcall(mono_image_get_name,img)
+        if okName and type(name)=='string' and name:lower():find('assembly%-csharp') then
+          foundAssembly=true
+          log('Stage 3: found '..name..', enumerating classes...')
+          local classes=mono_image_enumClasses(img)
+          if type(classes)~='table' then error('mono_image_enumClasses returned no classes') end
+          log('Total classes in '..name..': '..tostring(#classes))
+          log('')
+          -- Only matching classes have their fields read: avoids thousands of expensive calls.
+          -- Report all names too, so an unexpected class naming scheme is detectable.
+          log('=== CLASS NAMES (all) ===')
+          for _,cl in ipairs(classes) do
+            allClasses=allClasses+1
+            log(tostring(cl.namespace or '')..'.'..tostring(cl.classname or ''))
+          end
+          log('=== MATCHED CLASS FIELDS ===')
+          for _,cl in ipairs(classes) do
+            local namePart=tostring(cl.classname or '')
+            local ns=tostring(cl.namespace or '')
+            if relevantName(namePart) or relevantName(ns) then
+              matched=matched+1
+              log(string.format('[%d] %s.%s classHandle=%s',
+                matched,ns,namePart,hex(cl.class)))
+              if cl.class and type(mono_class_enumFields)=='function' then
+                local okFields,fields=pcall(mono_class_enumFields,cl.class)
+                if okFields and type(fields)=='table' then
+                  for _,f in ipairs(fields) do
+                    log(string.format('  %s +0x%X type=%s monotype=%s static=%s',
+                      tostring(f.name or '?'),tonumber(f.offset) or 0,
+                      tostring(f.typename),tostring(f.monotype),tostring(f.isStatic)))
+                  end
+                else
+                  log('  FIELD_ENUM_ERROR: '..tostring(fields))
+                end
+              end
+              -- Read method names only; never call any game methods.
+              if cl.class and type(mono_class_enumMethods)=='function' then
+                local okMethods,methods=pcall(mono_class_enumMethods,cl.class)
+                if okMethods and type(methods)=='table' then
+                  local shown=0
+                  for _,m in ipairs(methods) do
+                    if shown&gt;=120 then
+                      log('  METHOD_LIST_TRUNCATED (120 max per class)')
+                      break
+                    end
+                    log('  METHOD '..tostring(m.name or '?'))
+                    shown=shown+1
+                  end
+                elseif not okMethods then
+                  log('  METHOD_ENUM_ERROR: '..tostring(methods))
+                end
+              end
+              if matched&gt;=300 then
+                log('Report capped at 300 matched class field groups; all class names retained.')
+                break
+              end
+            end
+          end
+          break
+        end
+      end
+    end
+    if not foundAssembly then error('Assembly-CSharp was not found; check attached game process') end
+  end, function(e)
+    return (debug and debug.traceback) and debug.traceback(tostring(e),2) or tostring(e)
+  end)
+  log('')
+  if ok then
+    log('RESULT: SUCCESS')
+  else
+    log('RESULT: ERROR')
+    log(err)
+  end
+  log('Matched class groups: '..tostring(matched))
+  log('Elapsed CPU seconds: '..string.format('%.2f',os.clock()-startTime))
+  fh:close()
+  if ok then
+    message('Mono diagnostic created.\nMatching class groups: '..matched..
+      '\nReport: '..path..'\n\nShare this report to identify player faction and equipment fields.')
+  else
+    message('Mono diagnostic encountered an error, but saved the partial report.\n'..
+      'Report: '..path..'\n\nError: '..tostring(err):sub(1,650))
+  end
+  return ok
+end
+function r.legacyCheck()
+  if getPID()==0 then message('Attach to the game first.') return end
+  local base,why=oldPointer()
+  if not base then message('Legacy pointer failed: '..why) else message('Legacy pointer reached '..statSummary(base)) end
+end
+function r.status()
+  local n=0 for _ in pairs(r.friends) do n=n+1 end
+  local en=0 for _ in pairs(r.equipment) do en=en+1 end
+  message('Build '..r.version..'\nGame PID: '..getPID()..'\nSelected base: '..hex(r.base)
+    ..'\nFriendly roster: '..n..'\nAuto Qi: '..tostring(r.auto)
+    ..'\nEquipment categories bound: '..en..'/'..#equipment
+    ..'\n\nNO save-file cheats, built-in cheat codes, or gameplay cheat flags are used.')
+end
+</LuaScript>
+</CheatTable>

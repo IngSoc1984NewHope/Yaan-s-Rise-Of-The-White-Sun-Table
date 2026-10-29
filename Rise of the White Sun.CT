@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>65</ID>
+      <Description>"Character"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Value="" Activated="1" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>53</ID>
+          <Description>"Face"</Description>
+          <LastState Value="150" RealAddress="23359B7AEB0"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"mono-2.0-bdwgc.dll"+0072EDC8</Address>
+          <Offsets>
+            <Offset>130</Offset>
+            <Offset>60</Offset>
+            <Offset>20</Offset>
+            <Offset>C94</Offset>
+            <Offset>20</Offset>
+            <Offset>78</Offset>
+            <Offset>68</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>57</ID>
+          <Description>"Money"</Description>
+          <LastState Value="50" RealAddress="23359B7AEB8"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"mono-2.0-bdwgc.dll"+0072EDC8</Address>
+          <Offsets>
+            <Offset>138</Offset>
+            <Offset>60</Offset>
+            <Offset>20</Offset>
+            <Offset>C94</Offset>
+            <Offset>20</Offset>
+            <Offset>78</Offset>
+            <Offset>68</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>56</ID>
+          <Description>"Followers"</Description>
+          <LastState Value="50" RealAddress="23359B7AEBC"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"mono-2.0-bdwgc.dll"+0072EDC8</Address>
+          <Offsets>
+            <Offset>13C</Offset>
+            <Offset>60</Offset>
+            <Offset>20</Offset>
+            <Offset>C94</Offset>
+            <Offset>20</Offset>
+            <Offset>78</Offset>
+            <Offset>68</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>55</ID>
+          <Description>"Qi"</Description>
+          <LastState Value="4" RealAddress="23359B7AEC0"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"mono-2.0-bdwgc.dll"+0072EDC8</Address>
+          <Offsets>
+            <Offset>140</Offset>
+            <Offset>60</Offset>
+            <Offset>20</Offset>
+            <Offset>C94</Offset>
+            <Offset>20</Offset>
+            <Offset>78</Offset>
+            <Offset>68</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>54</ID>
+          <Description>"Guns"</Description>
+          <LastState Value="0" RealAddress="23359B7AEC4"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"mono-2.0-bdwgc.dll"+0072EDC8</Address>
+          <Offsets>
+            <Offset>144</Offset>
+            <Offset>60</Offset>
+            <Offset>20</Offset>
+            <Offset>C94</Offset>
+            <Offset>20</Offset>
+            <Offset>78</Offset>
+            <Offset>68</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>92</ID>
+      <Description>"Roles"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Value="" Activated="1" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>89</ID>
+          <Description>"Statesman"</Description>
+          <LastState Value="16777472" RealAddress="23359B7AE9B"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"mono-2.0-bdwgc.dll"+0072EDC8</Address>
+          <Offsets>
+            <Offset>144-29</Offset>
+            <Offset>60</Offset>
+            <Offset>20</Offset>
+            <Offset>C94</Offset>
+            <Offset>20</Offset>
+            <Offset>78</Offset>
+            <Offset>68</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>90</ID>
+          <Description>"Political Worker"</Description>
+          <LastState Value="16842753" RealAddress="23359B7AE9C"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"mono-2.0-bdwgc.dll"+0072EDC8</Address>
+          <Offsets>
+            <Offset>144-28</Offset>
+            <Offset>60</Offset>
+            <Offset>20</Offset>
+            <Offset>C94</Offset>
+            <Offset>20</Offset>
+            <Offset>78</Offset>
+            <Offset>68</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>91</ID>
+          <Description>"Unionist"</Description>
+          <LastState Value="65792" RealAddress="23359B7AE9D"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"mono-2.0-bdwgc.dll"+0072EDC8</Address>
+          <Offsets>
+            <Offset>144-27</Offset>
+            <Offset>60</Offset>
+            <Offset>20</Offset>
+            <Offset>C94</Offset>
+            <Offset>20</Offset>
+            <Offset>78</Offset>
+            <Offset>68</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>93</ID>
+          <Description>"Officer"</Description>
+          <LastState Value="257" RealAddress="23359B7AE9E"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"mono-2.0-bdwgc.dll"+0072EDC8</Address>
+          <Offsets>
+            <Offset>144-26</Offset>
+            <Offset>60</Offset>
+            <Offset>20</Offset>
+            <Offset>C94</Offset>
+            <Offset>20</Offset>
+            <Offset>78</Offset>
+            <Offset>68</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>94</ID>
+          <Description>"Generalisimo"</Description>
+          <LastState Value="1" RealAddress="23359B7AE9F"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"mono-2.0-bdwgc.dll"+0072EDC8</Address>
+          <Offsets>
+            <Offset>144-25</Offset>
+            <Offset>60</Offset>
+            <Offset>20</Offset>
+            <Offset>C94</Offset>
+            <Offset>20</Offset>
+            <Offset>78</Offset>
+            <Offset>68</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>95</ID>
+          <Description>"Diplomat"</Description>
+          <LastState Value="0" RealAddress="23359B7AEA0"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"mono-2.0-bdwgc.dll"+0072EDC8</Address>
+          <Offsets>
+            <Offset>144-24</Offset>
+            <Offset>60</Offset>
+            <Offset>20</Offset>
+            <Offset>C94</Offset>
+            <Offset>20</Offset>
+            <Offset>78</Offset>
+            <Offset>68</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>96</ID>
+          <Description>"Spy"</Description>
+          <LastState Value="0" RealAddress="23359B7AEA1"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"mono-2.0-bdwgc.dll"+0072EDC8</Address>
+          <Offsets>
+            <Offset>121</Offset>
+            <Offset>60</Offset>
+            <Offset>20</Offset>
+            <Offset>C94</Offset>
+            <Offset>20</Offset>
+            <Offset>78</Offset>
+            <Offset>68</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>97</ID>
+          <Description>"Underworld Master"</Description>
+          <LastState Value="0" RealAddress="23359B7AEA2"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"mono-2.0-bdwgc.dll"+0072EDC8</Address>
+          <Offsets>
+            <Offset>122</Offset>
+            <Offset>60</Offset>
+            <Offset>20</Offset>
+            <Offset>C94</Offset>
+            <Offset>20</Offset>
+            <Offset>78</Offset>
+            <Offset>68</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>98</ID>
+          <Description>"Terrorist"</Description>
+          <LastState Value="0" RealAddress="23359B7AEA3"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"mono-2.0-bdwgc.dll"+0072EDC8</Address>
+          <Offsets>
+            <Offset>123</Offset>
+            <Offset>60</Offset>
+            <Offset>20</Offset>
+            <Offset>C94</Offset>
+            <Offset>20</Offset>
+            <Offset>78</Offset>
+            <Offset>68</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>99</ID>
+          <Description>"Police"</Description>
+          <LastState Value="0" RealAddress="23359B7AEA4"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"mono-2.0-bdwgc.dll"+0072EDC8</Address>
+          <Offsets>
+            <Offset>124</Offset>
+            <Offset>60</Offset>
+            <Offset>20</Offset>
+            <Offset>C94</Offset>
+            <Offset>20</Offset>
+            <Offset>78</Offset>
+            <Offset>68</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>100</ID>
+          <Description>"Businessman"</Description>
+          <LastState Value="0" RealAddress="23359B7AEA5"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"mono-2.0-bdwgc.dll"+0072EDC8</Address>
+          <Offsets>
+            <Offset>125</Offset>
+            <Offset>60</Offset>
+            <Offset>20</Offset>
+            <Offset>C94</Offset>
+            <Offset>20</Offset>
+            <Offset>78</Offset>
+            <Offset>68</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>101</ID>
+          <Description>"Theorist"</Description>
+          <LastState Value="0" RealAddress="23359B7AEA6"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"mono-2.0-bdwgc.dll"+0072EDC8</Address>
+          <Offsets>
+            <Offset>126</Offset>
+            <Offset>60</Offset>
+            <Offset>20</Offset>
+            <Offset>C94</Offset>
+            <Offset>20</Offset>
+            <Offset>78</Offset>
+            <Offset>68</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>102</ID>
+          <Description>"Peasant Leader"</Description>
+          <LastState Value="0" RealAddress="23359B7AEA7"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"mono-2.0-bdwgc.dll"+0072EDC8</Address>
+          <Offsets>
+            <Offset>127</Offset>
+            <Offset>60</Offset>
+            <Offset>20</Offset>
+            <Offset>C94</Offset>
+            <Offset>20</Offset>
+            <Offset>78</Offset>
+            <Offset>68</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>104</ID>
+          <Description>"Warlord"</Description>
+          <LastState Value="0" RealAddress="23359B7AEA8"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"mono-2.0-bdwgc.dll"+0072EDC8</Address>
+          <Offsets>
+            <Offset>128</Offset>
+            <Offset>60</Offset>
+            <Offset>20</Offset>
+            <Offset>C94</Offset>
+            <Offset>20</Offset>
+            <Offset>78</Offset>
+            <Offset>68</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>103</ID>
+          <Description>"Bandit"</Description>
+          <LastState Value="0" RealAddress="23359B7AEA9"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"mono-2.0-bdwgc.dll"+0072EDC8</Address>
+          <Offsets>
+            <Offset>129</Offset>
+            <Offset>60</Offset>
+            <Offset>20</Offset>
+            <Offset>C94</Offset>
+            <Offset>20</Offset>
+            <Offset>78</Offset>
+            <Offset>68</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>105</ID>
+          <Description>"Sovietniki"</Description>
+          <LastState Value="0" RealAddress="23359B7AEAA"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"mono-2.0-bdwgc.dll"+0072EDC8</Address>
+          <Offsets>
+            <Offset>12A</Offset>
+            <Offset>60</Offset>
+            <Offset>20</Offset>
+            <Offset>C94</Offset>
+            <Offset>20</Offset>
+            <Offset>78</Offset>
+            <Offset>68</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>106</ID>
+          <Description>"Playboy"</Description>
+          <LastState Value="0" RealAddress="23359B7AEAB"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>"mono-2.0-bdwgc.dll"+0072EDC8</Address>
+          <Offsets>
+            <Offset>12B</Offset>
+            <Offset>60</Offset>
+            <Offset>20</Offset>
+            <Offset>C94</Offset>
+            <Offset>20</Offset>
+            <Offset>78</Offset>
+            <Offset>68</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

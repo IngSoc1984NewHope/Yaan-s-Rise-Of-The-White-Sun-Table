@@ -1,0 +1,766 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>2000</ID>
+      <Description>"00 - Setup / Bind live PnjManager and YOUR faction (v0.2.2)"</Description>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>2001</ID>
+          <Description>"01. Bind REAL PnjManager via verified Qi address (+0x174)"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS2.bindSelected()
+return ""
+{$asm}
+
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>2002</ID>
+          <Description>"02. Bind YOUR faction from PnjManager.faction (+0x50)"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS2.bindFactionFromSelected()
+return ""
+{$asm}
+
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>2003</ID>
+          <Description>"03. Manual faction-object address binding (fallback)"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS2.bindFactionManual()
+return ""
+{$asm}
+
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>2004</ID>
+          <Description>"04. Show current status / binding / roster count"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS2.status()
+return ""
+{$asm}
+
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2009</ID>
+      <Description>"01 - Selected Character LIVE stats (4 Bytes)"</Description>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>2010</ID>
+          <Description>"Selected Character Face (legacy +130 / PnjManager.Influence +164)"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>ROWS2_Selected+130</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>2011</ID>
+          <Description>"Selected Character Money"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>ROWS2_Selected+138</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>2012</ID>
+          <Description>"Selected Character Followers"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>ROWS2_Selected+13C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>2013</ID>
+          <Description>"Selected Character Qi"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>ROWS2_Selected+140</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>2014</ID>
+          <Description>"Selected Character Personal Guns"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>ROWS2_Selected+144</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2020</ID>
+      <Description>"02 - ALL MY FACTION members Qi / no per-character capture"</Description>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry><ID>2025</ID><Description>"00. DISCOVER OWN PnjManager instances via Mono vtable scan (READ ONLY)"</Description><VariableType>Auto Assembler Script</VariableType><AssemblerScript><![CDATA[[ENABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS2.scanFactionMembers()
+return ""
+{$asm}
+
+[DISABLE]
+]]></AssemblerScript></CheatEntry><CheatEntry>
+          <ID>2021</ID>
+          <Description>"01. Preview verified faction Qi candidates (READ ONLY)"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS2.previewMembers()
+return ""
+{$asm}
+
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>2022</ID>
+          <Description>"02. Set Qi target for VERIFIED faction members (one-shot / APPLY)"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS2.applyQi(false)
+return ""
+{$asm}
+
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>2023</ID>
+          <Description>"03. Maintain Qi for MY faction [toggle]"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS2.setMaintain(true)
+return ""
+{$asm}
+
+[DISABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS2.setMaintain(false)
+return ""
+{$asm}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>2024</ID>
+          <Description>"04. Change faction Qi target (default 99)"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS2.chooseQi()
+return ""
+{$asm}
+
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2030</ID>
+      <Description>"03 - FACTION armory: actual FactionManager fields"</Description>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>2031</ID>
+          <Description>"Faction Money / Argent [VERIFIED CLASS OFFSET]"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>ROWS2_Faction+22C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>2032</ID>
+          <Description>"Faction Rifles / Armes [VERIFIED CLASS OFFSET]"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>ROWS2_Faction+230</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>2033</ID>
+          <Description>"Faction Artillery / artillerie [VERIFIED CLASS OFFSET]"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>ROWS2_Faction+234</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>2034</ID>
+          <Description>"Faction Machine Guns / mitrailleuses [VERIFIED CLASS OFFSET]"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>ROWS2_Faction+238</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>2035</ID>
+          <Description>"Faction Armored Cars / automitrailleuse [VERIFIED CLASS OFFSET]"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>ROWS2_Faction+23C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>2036</ID>
+          <Description>"Faction Armored Trains / armoredTrain [VERIFIED CLASS OFFSET]"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>ROWS2_Faction+240</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>2037</ID>
+          <Description>"Faction Trucks / trucks [VERIFIED CLASS OFFSET]"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>ROWS2_Faction+244</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2040</ID>
+      <Description>"04 - Mono targeted diagnostics / for further auto binding"</Description>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>2041</ID>
+          <Description>"01. Export TARGETED Mono fields + static roots (READ ONLY)"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS2.dumpTargeted()
+return ""
+{$asm}
+
+[DISABLE]
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <LuaScript><![CDATA[-- Rise Of The White Sun / Faction-aware runtime table v0.2.2
+-- IMPORTANT: runtime-memory editing ONLY. Never invoke CheatCodes, game cheat flags,
+-- SaveManager or save-file modifications. Loading table performs ZERO memory writes.
+-- Tested structurally outside the game; live runtime behavior needs verification.
+if ROWS2 and ROWS2.timer then pcall(function() ROWS2.timer.Enabled=false; ROWS2.timer.destroy() end) end
+for _,name in ipairs({'ROWS2_Selected','ROWS2_Faction'}) do pcall(unregisterSymbol,name) end
+ROWS2={version='0.2.2',pid=0,selected=nil,faction=nil,maintain=false,timer=nil,
+       targetQi=99,knownMembers={},selectedLegacy=nil,memberQiOffset=0x174,rosterScan=nil,fieldCache={}}
+local r=ROWS2
+local function hx(a)
+ if type(a)=='number' then return string.format('0x%X',a) end
+ return tostring(a)
+end
+local function tell(x) showMessage('[Rise Of The White Sun / v0.2.2]\n'..tostring(x)) end
+local function pid()
+ local ok,n=pcall(getOpenedProcessID)
+ if ok and type(n)=='number' then return n end
+ return 0
+end
+local function inGame() return pid()~=0 and (r.pid==0 or pid()==r.pid) end
+local function rdptr(a)
+ if type(a)~='number' or a<0x10000 then return nil end
+ local ok,n=pcall(readPointer,a)
+ if ok and type(n)=='number' and n>=0x10000 then return n end
+ return nil
+end
+local function rdi(a)
+ if type(a)~='number' or a<0x10000 then return nil end
+ local ok,n=pcall(readInteger,a)
+ if ok and type(n)=='number' then return n end
+ return nil
+end
+local function parseAddress(s)
+ if not s or s=='' then return nil end
+ local ok,a=pcall(getAddressSafe,s)
+ if ok and type(a)=='number' then return a end
+ local ss=s:gsub('^%s*0[xX]',''):gsub('%s+$','')
+ return tonumber(ss,16)
+end
+local function symbol(n,a)
+ pcall(unregisterSymbol,n)
+ registerSymbol(n,a,true)
+end
+local function getMonoClass(a)
+ local ok,id,name=pcall(mono_object_getClass,a)
+ if ok and type(id)=='number' and id~=0 then return id,name end
+ return nil,nil
+end
+local function fields(id)
+ local ok,v=pcall(mono_class_enumFields,id,true)
+ return (ok and type(v)=='table') and v or {}
+end
+local function fieldNamed(ff,name)
+ for _,f in ipairs(ff) do
+   if tostring(f.name):lower()==name:lower() then return f end
+ end
+ return nil
+end
+local function ensureMono()
+ if r.monoReady and r.monoPID==pid() then return true end
+ if type(mono_findClass)~='function' then
+   tell('CE Mono Lua API is unavailable. Enable Mono features in Cheat Engine.')
+   return false
+ end
+ local ok,val=pcall(LaunchMonoDataCollector)
+ if not ok or val==nil or val==0 or val==false then
+   tell('Mono initialization failed: '..tostring(val))
+   return false
+ end
+ r.monoReady=true; r.monoPID=pid()
+ return true
+end
+local function charStats(a)
+ local face,money,followers,qi,guns=rdi(a+0x130),rdi(a+0x138),rdi(a+0x13C),rdi(a+0x140),rdi(a+0x144)
+ if not(face and money and followers and qi and guns) then return nil end
+ if face<0 or face>100000000 or money<0 or money>1000000000 or
+    followers<0 or followers>1000000000 or qi< -100 or qi>9999 or
+    guns<0 or guns>1000000000 then return nil end
+ return {face=face,money=money,followers=followers,qi=qi,guns=guns}
+end
+local function charFmt(a)
+ local s=charStats(a)
+ if not s then return 'Character stats unreadable' end
+ return string.format('Face=%d  Money=%d  Followers=%d  Qi=%d  PersonalGuns=%d',
+ s.face,s.money,s.followers,s.qi,s.guns)
+end
+function r.bindSelected()
+ if pid()==0 then tell('Attach Cheat Engine to the game first.') return end
+ local s=inputQuery('Character binding','Enter the VERIFIED Qi MEMORY ADDRESS (hex) for a member of YOUR faction.\nReal PnjManager object base = Qi address - 0x174.','')
+ if not s or s=='' then return end
+ local qiaddr=parseAddress(s)
+ if not qiaddr then tell('Not a hexadecimal address: '..s) return end
+ local oldbase=qiaddr-0x140 -- legacy pseudo-base for UI stats, NOT a managed object
+ local realbase=qiaddr-0x174 -- real PnjManager object base from v0.2 targeted Mono report
+ local st=charStats(oldbase)
+ if not st or rdi(realbase+0x174)~=st.qi then
+   tell('Character attributes/Qi do not validate. No pointer registered.\nQi address='..hx(qiaddr))
+   return
+ end
+ if not ensureMono() then return end
+ local classid,classname=getMonoClass(realbase)
+ if not classid or not tostring(classname):find('PnjManager',1,true) then
+   tell('Stats read correctly, but derived real object '..hx(realbase)..
+   ' was not recognized as PnjManager.\nMono class: '..tostring(classname)..
+   '\nLegacy stats remain unchanged. Check that Qi address belongs to a live character in the current process.')
+   return
+ end
+ local ff=fields(classid)
+ for _,spec in ipairs({{'Energie',0x174},{'Argent',0x16C},{'Partisans',0x170},{'faction',0x50}}) do
+   local f=fieldNamed(ff,spec[1])
+   if not f or tonumber(f.offset)~=spec[2] then
+     tell('Runtime PnjManager field '..spec[1]..' does not match the report. Aborted for safety.')
+     return
+   end
+ end
+ if r.timer then r.timer.Enabled=false end
+ r.maintain=false; r.pid=pid(); r.selected=realbase; r.selectedLegacy=oldbase
+ r.faction=nil; r.knownMembers={}; r.rosterScan=nil; r.fieldCache={}
+ pcall(unregisterSymbol,'ROWS2_Faction')
+ -- Preserve the existing selected-stat CE records which use legacy pseudo-base offsets.
+ symbol('ROWS2_Selected',oldbase)
+ local ptr=rdptr(realbase+0x50)
+ tell('Verified Mono object: '..hx(realbase)..' (PnjManager)'..
+ '\nLegacy stats base: '..hx(oldbase)..
+ '\nQi address: '..hx(qiaddr)..'  Qi='..tostring(st.qi)..
+ '\n'..charFmt(oldbase)..
+ '\nPnjManager.faction pointer: '..hx(ptr)..
+ '\n\nNow run 02. Bind YOUR faction from selected character.')
+end
+local equip={
+ {'Faction Money','Argent',0x22C},
+ {'Rifles / Small Arms','Armes',0x230},
+ {'Artillery / Cannons','artillerie',0x234},
+ {'Machine Guns','mitrailleuses',0x238},
+ {'Armored Cars','automitrailleuse',0x23C},
+ {'Armored Trains','armoredTrain',0x240},
+ {'Trucks','trucks',0x244}
+}
+local function managedString(a,limit)
+ local ptr=rdptr(a)
+ if not ptr then return '(none)' end
+ -- Mono System.String starts with length (int) at object+0x10 and UTF16 at +0x14.
+ local length=rdi(ptr+0x10)
+ if not length or length<0 or length>2048 then return '(unreadable)' end
+ local ok,v=pcall(readString,ptr+0x14,math.min(length,limit or 70),true)
+ if ok and type(v)=='string' then return v end
+ return '(unreadable)'
+end
+local function factionSummary(a)
+ local name=managedString(a+0x20,72)
+ local parts={'Faction at '..hx(a),'Name: '..name}
+ for _,e in ipairs(equip) do
+    parts[#parts+1]=string.format('%s = %s',e[1],tostring(rdi(a+e[3])))
+ end
+ return table.concat(parts,'\n')
+end
+local function factionValid(a)
+ if not a then return false,'Null pointer' end
+ if not ensureMono() then return false,'Mono unavailable' end
+ local cid,cname=getMonoClass(a)
+ if not cid or not tostring(cname):find('FactionManager',1,true) then
+   return false,'Class is '..tostring(cname)
+ end
+ local ff=fields(cid)
+ for _,e in ipairs(equip) do
+    local f=fieldNamed(ff,e[2])
+    if not f or tonumber(f.offset)~=e[3] or tostring(f.typename)~='System.Int32' then
+      return false,'FactionManager.'..e[2]..' metadata offset/type unexpected'
+    end
+    local n=rdi(a+e[3])
+    if not n or n < -1000000 or n>1000000000 then
+      return false,'FactionManager.'..e[2]..' value invalid: '..tostring(n)
+    end
+ end
+ local listField=fieldNamed(ff,'factionMembers')
+ if not listField or tonumber(listField.offset)~=0x130 then
+    return false,'factionMembers field missing or moved'
+ end
+ return true
+end
+local function listMembers(a)
+ if not a then return nil,'Faction not bound' end
+ local list=rdptr(a+0x130)
+ if not list then return nil,'FactionMember list is null: enter game and open faction screen' end
+ -- Mono .NET 64-bit List<T>: _items +0x10, _size +0x18;
+ -- reference array: length +0x18, elements +0x20 (8-byte references).
+ local arr=rdptr(list+0x10)
+ local size=rdi(list+0x18)
+ if not arr or not size or size<0 or size>2000 then return nil,'Unexpected List<PnjManager> layout/count' end
+ local capacity=rdi(arr+0x18)
+ if not capacity or capacity<size or capacity>500000 then return nil,'Array layout/length verification failed' end
+ local ids={}; local seen={}
+ for i=0,size-1 do
+   local p=rdptr(arr+0x20+i*8)
+   if p and not seen[p] then
+     seen[p]=true
+     ids[#ids+1]=p
+   end
+ end
+ return ids,nil
+end
+local function verifyMember(p)
+ -- Called before ALL stat writes. Requires a concrete PnjManager object with exact faction pointer.
+ local id,name=getMonoClass(p)
+ if not id or name~='PnjManager' then return false end
+ local cache=r.fieldCache or {}
+ r.fieldCache=cache
+ local valid=cache[id]
+ if valid==nil then
+   local ff=fields(id)
+   local qiField=fieldNamed(ff,'Energie')
+   local factionField=fieldNamed(ff,'faction')
+   valid=qiField and tostring(qiField.typename)=='System.Int32' and
+      tonumber(qiField.offset)==0x174 and factionField and
+      tonumber(factionField.offset)==0x50 and
+      tostring(factionField.typename)=='FactionManager'
+   cache[id]=valid and true or false
+ end
+ if not cache[id] then return false end
+ if rdptr(p+0x50)~=r.faction then return false end
+ local current=rdi(p+0x174)
+ if current==nil or current< -100 or current>9999 then return false end
+ -- Only living characters. PnjManager.isDead is a one-byte bool at 0x138.
+ local ok,dead=pcall(readBytes,p+0x138,1)
+ if ok and dead==1 then return false end
+ r.knownMembers[p]=0x174
+ return true
+end
+local function toLEBytes(q)
+ if type(q)~='number' or q<0x10000 or q>0xFFFFFFFFFFFF then return nil end
+ local parts={}
+ for i=1,8 do parts[i]=string.format('%02X',q%256); q=math.floor(q/256) end
+ return table.concat(parts,' ')
+end
+-- This performs an explicit, one-time writable-memory scan for the selected
+-- PnjManager's Mono object header (vtable pointer). This is NOT game code hooking.
+-- All matches are then rechecked as PnjManager objects with OUR faction pointer.
+function r.scanFactionMembers()
+ if not inGame() or not r.selected or not r.faction then
+   tell('First bind a verified PnjManager and YOUR faction. No scan performed.') return end
+ if not ensureMono() then return end
+ if rdptr(r.selected+0x50)~=r.faction or not verifyMember(r.selected) then
+   tell('Selected character is stale or no longer belongs to the bound faction. Rebind and retry.') return
+ end
+ if type(AOBScan)~='function' then tell('Cheat Engine AOBScan API unavailable.') return end
+ local vtable=rdptr(r.selected)
+ local aob=toLEBytes(vtable)
+ if not aob then tell('Cannot read selected character Mono vtable.') return end
+ local answer=inputQuery('DISCOVER faction characters (read only)',
+   'The game factionMembers list is empty.\n'
+   ..'Scan writable memory for PnjManager instances sharing your selected character vtable.\n'
+   ..'Every candidate will be verified as PnjManager, with faction pointer matching yours.\n'
+   ..'This may temporarily block the CE interface. NO values are written.\n\n'
+   ..'Type SCAN to continue:', '')
+ if answer~='SCAN' then tell('Roster scan cancelled; no memory changed.') return end
+ r.rosterScan=nil
+ local ok,found=xpcall(function() return AOBScan(aob,'+W',1,'8') end,debug.traceback)
+ if not ok or not found then tell('AOBScan could not complete: '..tostring(found)) return end
+ local members,seen={},{}
+ local hits,invalid=0,0
+ local ok2,scanerr=xpcall(function()
+   hits=tonumber(found.Count) or 0
+   if hits>50000 then error('Unusually many vtable matches ('..hits..'); stopped for safety') end
+   for i=0,hits-1 do
+     local ptr=tonumber(tostring(found[i]):gsub('^0[xX]',''),16)
+     if ptr and ptr%8==0 and not seen[ptr] then
+       seen[ptr]=true
+       if rdptr(ptr)==vtable and verifyMember(ptr) then
+         members[#members+1]=ptr
+         if #members>512 then error('More than 512 matched faction characters: safety limit') end
+       else invalid=invalid+1 end
+     end
+   end
+ end,debug.traceback)
+ pcall(function() found.destroy() end)
+ if not ok2 then tell('Roster scan rejected. '..tostring(scanerr)..'\nNo game values changed.') return end
+ local hasSelected=false
+ for _,a in ipairs(members) do if a==r.selected then hasSelected=true end end
+ if not hasSelected then
+   tell('Scan did not rediscover the known selected character. Results are incomplete; no roster stored.\n'
+   ..'vtable='..hx(vtable)..' pattern='..aob..'\nScan hits='..hits) return
+ end
+ table.sort(members)
+ r.rosterScan={members=members,vtable=vtable,pid=pid(),faction=r.faction,selected=r.selected,hits=hits}
+ if r.timer then r.timer.Enabled=false end
+ r.maintain=false
+ local lines={'PnjManager scan finished (READ ONLY)',
+   'Faction: '..managedString(r.faction+0x20,70),
+   'Memory hits='..hits..' ; verified members='..#members..' ; rejected matches='..invalid,
+   'Source: Mono vtable writable-memory scan; factionMembers may still be 0.',
+   'All verified matches are revalidated before ANY future Qi write.',
+   'Run Preview and check every name before setting Qi.'}
+ if #members==1 then
+   lines[#lines+1]='WARNING: only one member found. Other characters may use different object types or vtables.'
+ end
+ -- Local diagnostic TXT only; does not touch the game's save system.
+ local reportPath=(os.getenv('TEMP') or '.')..'\\ROWS_RosterScan_v0.2.2.txt'
+ local file=io.open(reportPath,'w')
+ if file then
+   file:write(table.concat(lines,'\n'),'\nVTable ',hx(vtable),'\nSearch pattern ',aob,'\n')
+   for i,p in ipairs(members) do
+     file:write(string.format('%03d  %s  Qi=%s  Character=%s\n',i,hx(p),
+       tostring(rdi(p+0x174)),managedString(p+0x28,55)))
+   end
+   file:close()
+   lines[#lines+1]='Report: '..reportPath
+ end
+ tell(table.concat(lines,'\n'))
+end
+local function membersChecked()
+ if not inGame() or not r.faction then return nil,'No bound faction / game process changed' end
+ if r.selected and rdptr(r.selected+0x50)~=r.faction then
+   r.rosterScan=nil
+   return nil,'Selected character changed faction or scene. Please rebind.'
+ end
+ local list,err=listMembers(r.faction)
+ local source='factionMembers list'
+ if not list and not r.rosterScan then return nil,err end
+ local checked,skipped={},0
+ if r.rosterScan and #r.rosterScan.members>0 then
+   local scan=r.rosterScan
+   if scan.pid~=pid() or scan.faction~=r.faction or scan.selected~=r.selected or
+       rdptr(r.selected)~=scan.vtable then
+     r.rosterScan=nil
+     return nil,'Discovered roster is stale. Repeat the scan.'
+   end
+   list=scan.members
+   source='verified Mono heap scan'
+ elseif #list==0 then
+   return nil,'FactionManager.factionMembers is empty. Run 00. Discover OWN faction PnjManager instances first.'
+ end
+ for _,p in ipairs(list) do
+   if verifyMember(p) then
+     local q=rdi(p+0x174)
+     if q and q>= -100 and q<=9999 then
+       checked[#checked+1]={addr=p,qi=q,qiaddr=p+0x174}
+     else skipped=skipped+1 end
+   else skipped=skipped+1 end
+ end
+ return checked,nil,skipped,#list,source
+end
+local function bindFaction(a,origin)
+ if not a then tell('No candidate FactionManager pointer available.') return false end
+ local ok,err=factionValid(a)
+ if not ok then tell('Rejected faction candidate '..hx(a)..'\n'..tostring(err)) return false end
+ local list,le=listMembers(a)
+ local desc=factionSummary(a)..'\nMember list: '..(list and tostring(#list) or tostring(le))
+ local ans=inputQuery('Confirm YOUR faction',
+ desc..'\n\nConfirm this is YOUR currently controlled faction. Type BIND to accept:','')
+ if ans~='BIND' then tell('Faction binding cancelled; no game memory modified.') return false end
+ r.pid=pid(); r.faction=a; r.knownMembers={}; r.rosterScan=nil; r.fieldCache={}
+ if r.timer then r.timer.Enabled=false end
+ r.maintain=false
+ symbol('ROWS2_Faction',a)
+ tell('MY FACTION bound via '..tostring(origin)..'\n'..desc..'\n\nEquipment fields are now available.\nAll-faction Qi scripts are OFF until explicitly enabled.')
+ return true
+end
+function r.bindFactionFromSelected()
+ if not inGame() or not r.selected then tell('Bind a character from YOUR faction first.') return end
+ if not ensureMono() then return end
+ local cid,cname=getMonoClass(r.selected)
+ if not cid or not tostring(cname):find('PnjManager',1,true) then
+   tell('The selected real object is no longer a live PnjManager. Please re-bind Qi address.')
+   return
+ end
+ local ff=fields(cid)
+ local f=fieldNamed(ff,'faction')
+ if not f or tonumber(f.offset)~=0x50 or tostring(f.typename)~='FactionManager' then
+   tell('PnjManager.faction metadata does not match (+0x50 FactionManager). Aborting.')
+   return
+ end
+ local a=rdptr(r.selected+0x50)
+ if not a then
+   tell('Selected PnjManager.faction is null. Enter a live scenario and re-bind.')
+   return
+ end
+ -- No other candidate, including loyalty, is tried automatically.
+ return bindFaction(a,'verified PnjManager.faction +0x50')
+end
+function r.bindFactionManual()
+ if pid()==0 then tell('Attach game process first.') return end
+ local s=inputQuery('FactionManager pointer','Enter a VERIFIED live FactionManager OBJECT BASE address (HEX).\nNot the address of Armes; for Armes address subtract 0x230.','')
+ if not s or s=='' then return end
+ return bindFaction(parseAddress(s),'manually supplied Mono FactionManager address')
+end
+function r.status()
+ local msg={'Version: '..r.version,'Game PID: '..tostring(pid()),
+ 'Selected real PnjManager: '..hx(r.selected),'Selected legacy stats: '..hx(r.selectedLegacy),'Faction: '..hx(r.faction),
+ 'Maintain all-faction Qi: '..tostring(r.maintain),'Qi target: '..tostring(r.targetQi),
+ 'Mono heap scan candidates: '..tostring(r.rosterScan and #r.rosterScan.members or 'not scanned')}
+ if r.faction and inGame() then
+   local m,err,skip,total,source=membersChecked()
+   msg[#msg+1]='Verified faction members: '..tostring(m and #m or err)..' / '..tostring(total or '?')
+   if skip and skip>0 then msg[#msg+1]='Skipped entries: '..skip end
+ end
+ tell(table.concat(msg,'\n')..'\n\nNo cheat code or save-file cheat is invoked.')
+end
+function r.previewMembers()
+ local m,err,skip,total,source=membersChecked()
+ if not m then tell('Cannot preview faction members: '..tostring(err)) return end
+ local lines={'FACTION Qi PREVIEW (READ ONLY)',factionSummary(r.faction),
+ 'Candidate source: '..tostring(source),
+ 'List count: '..tostring(total)..', verified: '..#m..', skipped: '..tostring(skip),
+ 'WARNING: vtable-based scan may miss subclassed/unloaded characters; verify names in-game.',''}
+ for i,x in ipairs(m) do
+   if i>25 then lines[#lines+1]='... ('..(#m-25)..' additional verified members)' break end
+   lines[#lines+1]=string.format('%02d. %s  Qi=%d  Name=%s',i,hx(x.addr),x.qi,managedString(x.addr+0x28,40))
+ end
+ tell(table.concat(lines,'\n'))
+end
+function r.chooseQi()
+ local s=inputQuery('Faction Qi target','Integer between 1 and 99. 99 is the documented cheat maximum, but NO built-in cheat code is called:',tostring(r.targetQi))
+ if not s then return end
+ local n=tonumber(s)
+ if not n or n~=math.floor(n) or n<1 or n>99 then tell('Enter a whole number 1..99.') return end
+ r.targetQi=n; tell('Faction Qi target now '..n)
+end
+function r.applyQi(silent)
+ local m,err,skip=membersChecked()
+ if not m then if not silent then tell(tostring(err)) end return 0 end
+ if #m==0 then if not silent then tell('No verified PnjManager members; NO writes performed.') end return 0 end
+ if not silent then
+   local a=inputQuery('CONFIRM all faction Qi edit',
+     'Faction: '..managedString(r.faction+0x20,70)..'\nValidated members: '..#m..'\nTarget Qi: '..r.targetQi..
+     '\nSkipped (not modified): '..tostring(skip)..'\n\nType APPLY to write ONLY these verified Qi integers:', '')
+   if a~='APPLY' then tell('Cancelled; no values changed.') return 0 end
+ end
+ local written=0
+ for _,x in ipairs(m) do
+   if rdi(x.qiaddr)==x.qi then
+     local ok=pcall(function() assert(writeInteger(x.qiaddr,r.targetQi)~=false,'write failed') end)
+     if ok then written=written+1 end
+   end
+ end
+ if not silent then tell('Qi='..r.targetQi..' written to '..written..' verified faction members.\nNo other stat, cheat flag, or save file was modified.') end
+ return written
+end
+function r.setMaintain(on)
+ if not on then
+    r.maintain=false
+    if r.timer then r.timer.Enabled=false end
+    tell('Automatic faction Qi maintenance DISABLED')
+    return
+ end
+ local m,err=membersChecked()
+ if not m or #m==0 then tell('Cannot maintain Qi: '..tostring(err or 'no verified members')) return end
+ local ans=inputQuery('Maintain Qi for YOUR faction',
+    'Faction: '..managedString(r.faction+0x20,70)..'\nVerified roster size: '..#m..
+    '\nTarget Qi: '..r.targetQi..'\n\nThis writes verified member Qi values every ~1 second.\nType MAINTAIN to turn on:', '')
+ if ans~='MAINTAIN' then tell('Not enabled.') return end
+ if not r.timer then
+   r.timer=createTimer(getMainForm(),false)
+   r.timer.Interval=1000
+   r.timer.OnTimer=function()
+     if not r.maintain then return end
+     if not inGame() then r.maintain=false; r.timer.Enabled=false; return end
+     local ok=pcall(function() r.applyQi(true) end)
+     if not ok then r.maintain=false; r.timer.Enabled=false end
+   end
+ end
+ r.maintain=true; r.timer.Enabled=true
+ tell('Automatic all-faction Qi='..r.targetQi..' enabled for '..#m..' verified members.\nDisable the toggle before changing factions or loading a new scenario.')
+end
+function r.dumpTargeted()
+ if pid()==0 then tell('Attach game first.') return end
+ local path=(os.getenv('TEMP') or '.')..'\\ROWS_Targeted_Mono_v0.2.2.txt'
+ local file,err=io.open(path,'w')
+ if not file then tell('Cannot write '..path..'\n'..tostring(err)) return end
+ local function log(s) file:write(tostring(s),'\n'); file:flush() end
+ log('Rise Of The White Sun targeted Mono investigation v0.2.2')
+ log('Game PID: '..pid()..'   selectedReal='..hx(r.selected)..'  legacyStats='..hx(r.selectedLegacy)..'  faction='..hx(r.faction))
+ log('READ-ONLY: only type metadata and selected-instance pointers; no game memory writes.')
+ local ok,problem=xpcall(function()
+   if not ensureMono() then error('Cannot initialize Mono') end
+   for _,name in ipairs({'PnjManager','FactionManager','ListManager','SwitchPJ_Hub',
+      'CharacterManager','PlayerData','UniteCombattante','GameSetUp','CharacterPoolManager'}) do
+     local cid=mono_findClass('',name)
+     log('\n=== CLASS '..name..' '..hx(cid)..' ===')
+     if cid and cid~=0 then
+       for _,f in ipairs(fields(cid)) do
+         log(string.format(' %-35s +0x%X %-64s static=%s',
+           tostring(f.name),tonumber(f.offset) or 0,tostring(f.typename),tostring(f.isStatic)))
+       end
+       local domains=mono_enumDomains() or {}
+       for _,dom in ipairs(domains) do
+         local ok2,static=pcall(mono_class_getStaticFieldAddress,dom,cid)
+         if ok2 and type(static)=='number' and static>=0x10000 then
+           log(' STATIC STORAGE domain='..hx(dom)..' base='..hx(static))
+           for _,f in ipairs(fields(cid)) do
+             if f.isStatic and tonumber(f.offset) then
+               log('  STATIC '..tostring(f.name)..' => '..hx(rdptr(static+f.offset)))
+             end
+           end
+         end
+       end
+     end
+   end
+   if r.selected then
+     local id,cn=getMonoClass(r.selected)
+     log('\n=== LIVE SELECTED OBJECT === class='..tostring(cn)..' handle='..hx(id))
+     if id then
+       for _,f in ipairs(fields(id)) do
+         if not f.isStatic and tostring(f.typename):find('FactionManager',1,true) then
+           log(' candidate '..tostring(f.name)..' +0x'..string.format('%X',f.offset)..' ptr='..hx(rdptr(r.selected+f.offset)))
+         end
+       end
+     end
+   end
+   if r.faction then log('\n=== BOUND FACTION ===\n'..factionSummary(r.faction)) end
+ end,debug.traceback)
+ if not ok then log('ERROR '..tostring(problem)) end
+ file:close()
+ tell((ok and 'Targeted diagnostic saved:' or 'Partial targeted diagnostic saved:')..'\n'..path..(problem and '\n'..tostring(problem) or ''))
+end
+]]></LuaScript>
+</CheatTable>

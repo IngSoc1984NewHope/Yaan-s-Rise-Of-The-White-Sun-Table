@@ -1,0 +1,385 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CheatTable CheatEngineTableVersion="45"><CheatEntries><CheatEntry><ID>3000</ID><Description>"00 - AUTO TRACKING (enable this once)"</Description><GroupHeader>1</GroupHeader><CheatEntries><CheatEntry><ID>3001</ID><Description>"02. Auto selected character + faction ONLY (no Qi modification)"</Description><VariableType>Auto Assembler Script</VariableType><AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS3.start()
+return ""
+{$asm}
+
+[DISABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS3.stop()
+return ""
+{$asm}
+</AssemblerScript></CheatEntry><CheatEntry><ID>3002</ID><Description>"01. ONE-CLICK ENABLE: auto selected + faction + maintain all faction Qi=99"</Description><VariableType>Auto Assembler Script</VariableType><AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS3.setMaintain(true)
+return ""
+{$asm}
+
+[DISABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS3.setMaintain(false)
+return ""
+{$asm}
+</AssemblerScript></CheatEntry><CheatEntry><ID>3003</ID><Description>"Show AUTO status / diagnostics"</Description><VariableType>Auto Assembler Script</VariableType><AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS3.statusMessage()
+return ""
+{$asm}
+
+[DISABLE]
+</AssemblerScript></CheatEntry><CheatEntry><ID>3004</ID><Description>"Rescan faction members now (read-only)"</Description><VariableType>Auto Assembler Script</VariableType><AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS3.rescanNow()
+return ""
+{$asm}
+
+[DISABLE]
+</AssemblerScript></CheatEntry><CheatEntry><ID>3005</ID><Description>"Preview verified members and Qi (read-only)"</Description><VariableType>Auto Assembler Script</VariableType><AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return "" end
+ROWS3.showMembers()
+return ""
+{$asm}
+
+[DISABLE]
+</AssemblerScript></CheatEntry></CheatEntries></CheatEntry><CheatEntry><ID>3010</ID><Description>"01 - AUTO SELECTED PLAYER (follows GameSetUp.PJ)"</Description><GroupHeader>1</GroupHeader><CheatEntries><CheatEntry><ID>3011</ID><Description>"Selected Player: Face / Influence"</Description><VariableType>4 Bytes</VariableType><Address>ROWS3_Selected+130</Address></CheatEntry><CheatEntry><ID>3012</ID><Description>"Selected Player: Money"</Description><VariableType>4 Bytes</VariableType><Address>ROWS3_Selected+138</Address></CheatEntry><CheatEntry><ID>3013</ID><Description>"Selected Player: Followers"</Description><VariableType>4 Bytes</VariableType><Address>ROWS3_Selected+13C</Address></CheatEntry><CheatEntry><ID>3014</ID><Description>"Selected Player: Qi / Action points"</Description><VariableType>4 Bytes</VariableType><Address>ROWS3_Selected+140</Address></CheatEntry><CheatEntry><ID>3015</ID><Description>"Selected Player: Personal guns"</Description><VariableType>4 Bytes</VariableType><Address>ROWS3_Selected+144</Address></CheatEntry></CheatEntries></CheatEntry><CheatEntry><ID>3020</ID><Description>"02 - FACTION EQUIPMENT (AUTO bound to active faction)"</Description><GroupHeader>1</GroupHeader><CheatEntries><CheatEntry><ID>3021</ID><Description>"Faction Money"</Description><VariableType>4 Bytes</VariableType><Address>ROWS3_Faction+22C</Address></CheatEntry><CheatEntry><ID>3022</ID><Description>"Rifles / Small Arms"</Description><VariableType>4 Bytes</VariableType><Address>ROWS3_Faction+230</Address></CheatEntry><CheatEntry><ID>3023</ID><Description>"Artillery / Cannons"</Description><VariableType>4 Bytes</VariableType><Address>ROWS3_Faction+234</Address></CheatEntry><CheatEntry><ID>3024</ID><Description>"Machine Guns"</Description><VariableType>4 Bytes</VariableType><Address>ROWS3_Faction+238</Address></CheatEntry><CheatEntry><ID>3025</ID><Description>"Armored Cars"</Description><VariableType>4 Bytes</VariableType><Address>ROWS3_Faction+23C</Address></CheatEntry><CheatEntry><ID>3026</ID><Description>"Armored Trains"</Description><VariableType>4 Bytes</VariableType><Address>ROWS3_Faction+240</Address></CheatEntry><CheatEntry><ID>3027</ID><Description>"Trucks"</Description><VariableType>4 Bytes</VariableType><Address>ROWS3_Faction+244</Address></CheatEntry></CheatEntries></CheatEntry></CheatEntries><LuaScript>-- Rise Of The White Sun CE runtime table v0.3.0 - automatic player tracking
+-- Loading is read-only. No CheatCodes, SaveManager, save-cheat flags, or save-file edits.
+-- Automatic path: GameSetUp.setup (static) -&gt; GameSetUp.PJ -&gt; PnjManager.faction
+-- Live behavior MUST be validated in game; observed offsets come from user Mono dumps.
+-- Retire the old v0.2.x maintenance timer if it is still running in this CE process.
+if ROWS2 and ROWS2.timer then
+  pcall(function() ROWS2.maintain=false;ROWS2.timer.Enabled=false;ROWS2.timer.destroy();ROWS2.timer=nil end)
+end
+if ROWS3 and ROWS3.timer then pcall(function() ROWS3.timer.Enabled=false; ROWS3.timer.destroy() end) end
+for _,s in ipairs({'ROWS2_Selected','ROWS2_Faction'}) do pcall(unregisterSymbol,s) end
+for _,s in ipairs({'ROWS3_Selected','ROWS3_Faction'}) do pcall(unregisterSymbol,s) end
+ROWS3={version='0.3.0', pid=0, enabled=false, maintain=false, timer=nil,
+  setup=nil,staticAddress=nil, selected=nil,faction=nil,monoPID=0,
+  targetQi=99,roster={},nextScan=0,scanInterval=30,
+  status='Not enabled', scanStatus='No scan',lastWritten=0,scanErrorCount=0,
+  initErrors=0,lastTick=0, lastSelectedName='',lastFactionName='',lastError=''}
+local R=ROWS3
+local function hex(x) if type(x)=='number' then return string.format('0x%X',x) else return tostring(x) end end
+local function readPtr(x)
+  if type(x)~='number' or x&lt;0x10000 then return nil end
+  local ok,v=pcall(readPointer,x)
+  return (ok and type(v)=='number' and v&gt;=0x10000) and v or nil
+end
+local function readInt(x)
+  if type(x)~='number' or x&lt;0x10000 then return nil end
+  local ok,v=pcall(readInteger,x)
+  if ok and type(v)=='number' then return v end
+  return nil
+end
+local function monoName(ptr)
+  if not ptr then return nil end
+  local ok,cid,name=pcall(mono_object_getClass,ptr)
+  if ok and type(cid)=='number' and cid~=0 then return name,cid end
+  return nil,nil
+end
+local function hasField(cid,name,offset,typeName,staticExpected)
+  local ok,ff=pcall(mono_class_enumFields,cid,true)
+  if not ok or type(ff)~='table' then return false end
+  for _,f in ipairs(ff) do
+    if f.name==name and tonumber(f.offset)==offset and f.typename==typeName
+       and (staticExpected==nil or f.isStatic==staticExpected) then return true end
+  end
+  return false
+end
+local function managedString(field)
+  local ptr=readPtr(field)
+  if not ptr then return '(none)' end
+  local n=readInt(ptr+0x10)
+  if not n or n&lt;0 or n&gt;512 then return '(unreadable)' end
+  local ok,s=pcall(readString,ptr+0x14,math.min(n,48),true)
+  return (ok and type(s)=='string') and s or '(unreadable)'
+end
+local function characterOK(ptr)
+  local nm,cid=monoName(ptr)
+  if nm~='PnjManager' or not cid then return false end
+  if not R.charCID or cid~=R.charCID then
+    if not hasField(cid,'Energie',0x174,'System.Int32',false) or
+       not hasField(cid,'faction',0x50,'FactionManager',false) or
+       not hasField(cid,'Argent',0x16C,'System.Int32',false) then return false end
+    R.charCID=cid
+  end
+  local qi=readInt(ptr+0x174)
+  if not qi or qi&lt; -100 or qi&gt;9999 then return false end
+  return true
+end
+local EQ={
+  {'Money','Argent',0x22C},{'Rifles','Armes',0x230},
+  {'Artillery','artillerie',0x234},{'Machine Guns','mitrailleuses',0x238},
+  {'Armored Cars','automitrailleuse',0x23C},
+  {'Armored Trains','armoredTrain',0x240},{'Trucks','trucks',0x244}
+}
+local function factionOK(ptr)
+  local nm,cid=monoName(ptr)
+  if nm~='FactionManager' or not cid then return false end
+  if not R.factionCID or R.factionCID~=cid then
+    for _,item in ipairs(EQ) do
+      if not hasField(cid,item[2],item[3],'System.Int32',false) then return false end
+    end
+    R.factionCID=cid
+  end
+  for _,item in ipairs(EQ) do
+    local v=readInt(ptr+item[3]); if not v or v&lt; -1000000 or v&gt;1000000000 then return false end
+  end
+  return true
+end
+local function clearSymbol(n)
+  pcall(unregisterSymbol,n)
+end
+local function setSymbol(n,p)
+  pcall(unregisterSymbol,n)
+  if p then pcall(registerSymbol,n,p,true) end
+end
+local function pid()
+  local ok,x=pcall(getOpenedProcessID); return ok and type(x)=='number' and x or 0
+end
+local function initializeMono()
+  if R.monoPID==pid() and R.monoPID~=0 then return true end
+  if type(mono_findClass)~='function' then R.lastError='CE Mono extension not loaded'; return false end
+  local ok,v=pcall(LaunchMonoDataCollector)
+  if not ok or v==nil or v==false or v==0 then
+    R.lastError='LaunchMonoDataCollector failed: '..tostring(v);return false end
+  R.monoPID=pid()
+  return true
+end
+local function locateGameSingleton()
+  if R.staticAddress then return true end
+  if not initializeMono() then return false end
+  local ok,cid=pcall(mono_findClass,'','GameSetUp')
+  if not ok or type(cid)~='number' or cid==0 then R.lastError='Cannot find GameSetUp';return false end
+  if not hasField(cid,'setup',0,'GameSetUp',true) or
+     not hasField(cid,'PJ',0x60,'PnjManager',false) then
+     R.lastError='GameSetUp.setup or .PJ layout changed';return false end
+  local ok2,ds=pcall(mono_enumDomains)
+  if not ok2 or type(ds)~='table' then R.lastError='Mono domain listing failed';return false end
+  for _,domain in ipairs(ds) do
+    local got,base=pcall(mono_class_getStaticFieldAddress,domain,cid)
+    if got and type(base)=='number' and base&gt;=0x10000 then
+      local instance=readPtr(base)
+      if instance and monoName(instance)=='GameSetUp' then
+        R.staticAddress=base;R.setup=instance;R.lastError='';return true
+      end
+    end
+  end
+  R.lastError='GameSetUp.setup static is empty or not a valid GameSetUp instance'
+  return false
+end
+local function updateBindings(player,faction)
+  if R.selected~=player then
+    R.selected=player
+    -- Pre-v0.3 records use pseudo-base = real PnjManager object +0x34
+    setSymbol('ROWS3_Selected',player and player+0x34 or nil)
+  end
+  if R.faction~=faction then
+    R.faction=faction
+    R.roster={};R.nextScan=0;R.scanErrorCount=0
+    setSymbol('ROWS3_Faction',faction)
+  end
+  R.lastSelectedName=player and managedString(player+0x28) or ''
+  R.lastFactionName=faction and managedString(faction+0x20) or ''
+end
+local function pollPlayer()
+  if pid()==0 or pid()~=R.pid then
+    updateBindings(nil,nil);R.status='Process detached / changed';R.lastError=R.status
+    R.enabled=false;R.maintain=false
+    return false
+  end
+  if not locateGameSingleton() then
+    updateBindings(nil,nil);R.status='Waiting for GameSetUp singleton';return false
+  end
+  local instance=readPtr(R.staticAddress)
+  if not instance or monoName(instance)~='GameSetUp' then
+    R.staticAddress=nil;R.setup=nil
+    updateBindings(nil,nil);R.status='GameSetUp singleton recreated; waiting';return false
+  end
+  R.setup=instance
+  local p=readPtr(instance+0x60)
+  if not p or not characterOK(p) then
+    updateBindings(nil,nil);R.status='GameSetUp.PJ unavailable (loading/character switching)';return false
+  end
+  local faction=readPtr(p+0x50)
+  if not faction or not factionOK(faction) then
+    updateBindings(nil,nil);R.status='Player faction unavailable / invalid';return false
+  end
+  updateBindings(p,faction)
+  R.status='Connected to active player + faction';R.lastError=''
+  return true
+end
+local function listMembers()
+  if not R.faction then return {} end
+  local list=readPtr(R.faction+0x130)
+  if not list then return {} end
+  local arr=readPtr(list+0x10);local size=readInt(list+0x18)
+  if not arr or not size or size&lt;0 or size&gt;1000 then return {} end
+  local cap=readInt(arr+0x18)
+  if not cap or cap&lt;size or cap&gt;100000 then return {} end
+  local result={}
+  for i=0,size-1 do local p=readPtr(arr+0x20+i*8);if p then result[#result+1]=p end end
+  return result
+end
+local function eligible(ptr)
+  if not characterOK(ptr) or readPtr(ptr+0x50)~=R.faction then return false end
+  -- No modifications to dead characters.
+  local ok,dead=pcall(readBytes,ptr+0x138,1)
+  return ok and dead~=nil and dead~=1
+end
+local function aobForPointer(n)
+  if not n or type(n)~='number' then return nil end
+  local pieces={}
+  for i=1,8 do pieces[#pieces+1]=string.format('%02X',n%256);n=math.floor(n/256) end
+  return table.concat(pieces,' ')
+end
+local function fullScan()
+  if not R.selected or not R.faction or not eligible(R.selected) then
+    R.scanStatus='No valid player/faction anchor';return false end
+  if type(AOBScan)~='function' then R.scanStatus='CE AOBScan is not available';return false end
+  local vt=readPtr(R.selected)
+  local aob=aobForPointer(vt)
+  if not aob then R.scanStatus='No Mono vtable';return false end
+  local scanOk,hits=xpcall(function() return AOBScan(aob,'+W',1,'8') end,debug.traceback)
+  if not scanOk or not hits then
+    R.scanStatus='Memory scan failed: '..tostring(hits);return false end
+  local members={};local seen={};local matchCount=0
+  local okay,err=xpcall(function()
+    matchCount=tonumber(hits.Count) or 0
+    if matchCount&gt;50000 then error('More than 50000 vtable hits') end
+    for i=0,matchCount-1 do
+      local ptr=tonumber(tostring(hits[i]):gsub('^0[xX]',''),16)
+      if ptr and ptr%8==0 and not seen[ptr] then
+        seen[ptr]=true
+        if readPtr(ptr)==vt and eligible(ptr) then
+          members[#members+1]=ptr
+          if #members&gt;512 then error('More than 512 matching faction members') end
+        end
+      end
+    end
+  end,debug.traceback)
+  pcall(function() hits.destroy() end)
+  if not okay then R.scanStatus='Scan rejected: '..tostring(err);return false end
+  local foundPlayer=false
+  for _,p in ipairs(members) do if p==R.selected then foundPlayer=true;break end end
+  if not foundPlayer then
+    R.scanStatus='Scan incomplete: active player not rediscovered';return false end
+  table.sort(members)
+  R.roster=members;R.scanStatus=string.format('%d faction characters / %d raw hits',#members,matchCount)
+  R.lastError='';R.scanErrorCount=0
+  return true
+end
+local function factionMembersChecked()
+  local all,seen={},{}
+  for _,p in ipairs(R.roster) do if not seen[p] then seen[p]=true;all[#all+1]=p end end
+  for _,p in ipairs(listMembers()) do if not seen[p] then seen[p]=true;all[#all+1]=p end end
+  if R.selected and not seen[R.selected] then all[#all+1]=R.selected end
+  local result={}
+  for _,p in ipairs(all) do if eligible(p) then result[#result+1]=p end end
+  return result
+end
+local function tick()
+  if not R.enabled then return end
+  local ok,valid=pcall(pollPlayer)
+  if not ok then R.status='Mono/player validation error';R.lastError=tostring(valid);return end
+  if not valid or not R.maintain then return end
+  R.lastTick=R.lastTick+1
+  if R.lastTick&gt;=R.nextScan then
+    R.nextScan=R.lastTick+R.scanInterval
+    local ok2,scanned=pcall(fullScan)
+    if not ok2 or not scanned then
+      R.scanErrorCount=R.scanErrorCount+1
+      if not ok2 then R.scanStatus='Exception: '..tostring(scanned) end
+    end
+  end
+  local members=factionMembersChecked()
+  local edited=0
+  for _,p in ipairs(members) do
+    -- Double-check ownership immediately before write to handle departures.
+    if eligible(p) then
+      local old=readInt(p+0x174)
+      if old and old~=R.targetQi then
+        local success,wrote=pcall(writeInteger,p+0x174,R.targetQi)
+        if success and wrote~=false then edited=edited+1 end
+      end
+    end
+  end
+  R.lastWritten=edited
+end
+local function makeTimer()
+  if R.timer then return end
+  R.timer=createTimer(getMainForm(),false)
+  R.timer.Interval=1000
+  R.timer.OnTimer=function()
+    local ok,err=pcall(tick)
+    if not ok then R.lastError=tostring(err);R.status='Timer error - no writes on failed tick' end
+    if not R.enabled then R.timer.Enabled=false end
+  end
+end
+function R.start()
+  if pid()==0 then showMessage('[ROWS 0.3] Attach to game process first.');return false end
+  if R.enabled then return true end
+  R.pid=pid(); R.enabled=true;R.maintain=false;R.lastTick=0;R.nextScan=0
+  R.monoPID=0;R.staticAddress=nil;R.setup=nil;R.lastError=''
+  makeTimer();R.timer.Enabled=true
+  pcall(pollPlayer)
+  return true
+end
+function R.stop()
+  R.enabled=false;R.maintain=false
+  if R.timer then R.timer.Enabled=false end
+  updateBindings(nil,nil)
+  R.status='Automatic tracking OFF'
+end
+function R.setMaintain(on)
+  if not on then R.maintain=false;R.lastWritten=0;return true end
+  if not R.enabled and not R.start() then return false end
+  -- One-click operation: if the game is still loading, remain armed but NEVER
+  -- write to unverified objects. The timer will retry the singleton automatically.
+  R.maintain=true;R.nextScan=0
+  if not R.selected or not R.faction then
+    R.status='Qi maintenance requested; waiting for a validated active player'
+  end
+  return true
+end
+function R.statusMessage()
+  if R.enabled then pcall(pollPlayer) end
+  local mem=factionMembersChecked()
+  local lines={'Rise Of The White Sun 0.3 - Auto Status',
+    'Tracking: '..tostring(R.enabled),'Maintain Qi=99: '..tostring(R.maintain),
+    'Status: '..tostring(R.status),'Process PID: '..tostring(pid()),
+    'GameSetUp singleton: '..hex(R.setup),'Static pointer field: '..hex(R.staticAddress),
+    'Active GameSetUp.PJ: '..hex(R.selected), 'Player: '..tostring(R.lastSelectedName),
+    'Active faction: '..hex(R.faction),'Faction: '..tostring(R.lastFactionName),
+    'Verified current faction members: '..#mem, 'Last roster scan: '..tostring(R.scanStatus),
+    'Last edited Qi values: '..tostring(R.lastWritten),
+    'Error: '..tostring(R.lastError),
+    '', 'No cheat codes, save-file edits or cheating flags are used.'}
+  showMessage(table.concat(lines,'\n'))
+end
+function R.rescanNow()
+  if not R.enabled or not R.faction then
+    showMessage('[ROWS 0.3] Auto tracking not ready. Turn on 00 first.');return end
+  local ok,result=pcall(fullScan)
+  if not ok then R.scanStatus='Exception: '..tostring(result) end
+  showMessage('[ROWS 0.3] '..R.scanStatus)
+end
+function R.showMembers()
+  if R.enabled then pcall(pollPlayer) end
+  local mem=factionMembersChecked()
+  local lines={'YOUR FACTION Qi PREVIEW (read-only): '..tostring(R.lastFactionName),
+    'Verified currently known members: '..#mem, 'Scan: '..R.scanStatus}
+  for i,p in ipairs(mem) do
+    if i&gt;35 then lines[#lines+1]='...';break end
+    lines[#lines+1]=string.format('%d. %s | Qi=%s | %s',i,hex(p),tostring(readInt(p+0x174)),managedString(p+0x28))
+  end
+  showMessage(table.concat(lines,'\n'))
+end
+</LuaScript></CheatTable>
